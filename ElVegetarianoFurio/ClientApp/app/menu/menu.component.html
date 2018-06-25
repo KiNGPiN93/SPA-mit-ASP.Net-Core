@@ -1,0 +1,24 @@
+﻿<h2>Speisekarte</h2>
+<md-spinner *ngIf="!categories"></md-spinner>
+<md-list *ngIf="categories">
+    <ng-container *ngFor="let category of categories">
+        <h3 md-subheader>
+            {{category.name}} ({{category.description}})
+        </h3>
+        <md-list-item *ngFor="let dish of category.dishes">
+            <h4 md-line (click)="goToDish(dish)">{{dish.id}} - {{dish.name}}</h4>
+            <div md-line>
+                <div fxLayout="row">
+                    <div fxFlex="90">{{dish.description}}</div>
+                    <div fxFlex="10">{{dish.price}}</div>
+                </div>
+            </div>
+        </md-list-item>
+        <md-divider></md-divider>
+    </ng-container>
+</md-list>
+<span class="add-button">
+    <button md-fab (click)="addDish()">
+        <md-icon>add</md-icon>
+    </button>
+</span>

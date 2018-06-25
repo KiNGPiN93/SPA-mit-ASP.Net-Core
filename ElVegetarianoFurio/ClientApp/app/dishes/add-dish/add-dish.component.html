@@ -1,0 +1,21 @@
+<md-spinner *ngIf="!categories"></md-spinner>
+<form *ngIf="categories" class="dish-form">
+    <md-input-container class="full-width">
+        <input mdInput placeholer="Name" [(ngModel)]="dish.name" maxlength="100" name="name" />
+        <md-hint align="end">{{dish.name.length}} / 100</md-hint>
+    </md-input-container>
+    <md-input-container class="full-width">
+        <textarea mdInput placeholer="Beschreibung" [(ngModel)]="dish.description" maxlength="250" name="description"></textarea>
+        <md-hint align="end">{{dish.description.length}} / 250</md-hint>
+    </md-input-container>
+    <md-input-container class="full-width">
+        <input type="number" mdInput placeholer="Preis" [(ngModel)]="dish.price" name="price" />
+        <md-hint align="start"><strong>Hohe Preise verärgern die Kundschaft</strong></md-hint>
+    </md-input-container>
+    <md-select class="full-width select-fix" placeholder="Kategorie" [(ngModel)]="dish.categoryId" name="categoryId">
+        <md-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</md-option>
+    </md-select>
+    <div>
+        <button md-button (click)="save()">Speichern</button>
+    </div>
+</form>
